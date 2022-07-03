@@ -1,0 +1,220 @@
+@charset "utf-8";
+
+/* 共通・スマートフォン版 */
+html,body {
+  width:100%;
+  min-width: 480px;
+  font-size:16px;
+  line-height:1.5;
+}
+header{
+  width: 100%;
+  height: 50px;
+  background-color: #888;
+  position: fixed;
+}
+header div.header_inner{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+}
+header div.header_inner h1{
+  font-size: 16px;
+  font-weight: bold;
+  padding:10px;
+  margin-right: auto;
+}
+header div.header_inner p.text1{
+  background-color: rgb(16, 29, 100);
+  color:#fff;
+  width: 80px;
+  height: 30px;
+  padding:5px;
+  margin:10px
+}
+header div.header_inner p.button{
+  width: 40px;
+  height: 40px;
+  background-color: #f00;
+  cursor: pointer;
+  margin:5px;
+  /* バーガーの線をボタン範囲の中心に配置 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* 最前面に */
+  z-index: 10;
+}
+
+/***** 真ん中のバーガー線 *****/
+.button_line {
+  /* 線の長さと高さ */
+  width: 80%;
+  height: 3px;
+  /* バーガー線の色 */
+  background-color: #fff;
+  /* バーガー線の位置基準として設定 */
+  position: relative;
+  transition: .2s;
+}
+/***** 上下のバーガー線 *****/
+.button_line::before,
+.button_line::after {
+  content: "";
+  /* 基準線と同じ大きさと色 */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  transition: .2s;
+}
+.button_line::before {
+  /* 上の線の位置 */
+  transform: translateY(-10px);
+}
+.button_line::after {
+  /* 下の線の位置 */
+  transform: translateY(10px);
+}
+/***** メニューオープン時 *****/
+.open .button_line {
+  /* 真ん中の線を透明に */
+  background-color: transparent;
+}
+.open .button_line::before,
+.open .button_line::after {
+  content: "";
+  transition: .2s;
+}
+.open .button_line::before {
+  /* 上の線を傾ける */
+  transform: rotate(45deg);
+}
+.open .button_line::after {
+  /* 上の線を傾ける */
+  transform: rotate(-45deg);
+}
+
+
+nav{
+  position: absolute;
+  width: 100%;
+  right:-100%;
+  top:50px;
+  transition:
+    right.3s ease-out;
+}
+nav.open{
+  right:0;
+  transition:
+    right.3s ease-out;
+}
+nav ul{
+  width: 100%;
+}
+nav ul li{
+  width: 100%;
+  border-bottom: solid 1px #000;
+  /* border-left: solid 1px #000; */
+  background-color: cornflowerblue;
+  padding:5px;
+}
+nav ul li a{
+  display: block;
+}
+
+
+main{
+  width: 100%;
+}
+
+section{
+  width: 100%;
+  margin:0 0 50px;
+}
+
+section div.kv{
+  width: 100%;
+  height: 400px;
+  background-color: #ff0;
+}
+section div.section_inner{
+  width: 98%;
+  background-color: rgba(144, 189, 152, 0.5);
+  margin:0 auto;
+}
+.list1{
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: flex-start;
+  width: 100%;
+}
+.list1 li{
+  width: 150px;
+  height: 200px;
+  margin:10px;
+  text-align: center;
+  padding:10px;
+  border: solid 1px #666;
+}
+
+
+
+.sp{
+  display: block;
+}
+.tab{
+  display: none;
+}
+.pc{
+  display: none;
+}
+
+/* タブレット版 */
+@media screen and (min-width:768px) {
+  header{
+    background-color: rgb(247, 61, 176);
+  }
+  nav{
+    width: 400px;
+  }
+
+
+  .sp{
+    display: none;
+  }
+  .tab{
+    display: block;
+  }
+  .pc{
+    display: none;
+  }
+}
+
+/* パソコン版 */
+@media screen and (min-width:1024px) {
+  header{
+    background-color: rgb(89, 61, 247);
+  }
+  header div.header_inner{
+    width: 1024px;
+    margin:0 auto;
+  }
+  section div.section_inner{
+    width: 1000px;
+    margin:0 auto;
+  }
+
+  .sp{
+    display: none;
+  }
+  .tab{
+    display: none;
+  }
+  .pc{
+    display: block;
+  }
+
+}
